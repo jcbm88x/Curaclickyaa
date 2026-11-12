@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: curaclickyaa
+    runtime: node
+    plan: free
+    buildCommand: npm ci --omit=dev
+    startCommand: node src/index.js
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: 22
+      - key: FRONTEND_URL
+        value: https://curaclickya.vercel.app
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_ACCESS_SECRET
+        generateValue: true
+      - key: JWT_REFRESH_SECRET
+        generateValue: true
+      - key: ACCESS_TOKEN_TTL
+        value: 15m
+      - key: REFRESH_TOKEN_TTL
+        value: 7d
+      - key: ADMIN_NAME
+        value: Administrador Curaclickya
+      - key: ADMIN_EMAIL
+        value: admin@curaclickya.com
+      - key: ADMIN_PASSWORD
+        sync: false
